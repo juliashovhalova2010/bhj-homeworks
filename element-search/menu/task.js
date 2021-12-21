@@ -1,19 +1,17 @@
-'use strict';
-let delegationBody = document.querySelector("body");
+const links = document.querySelectorAll('.menu__link');
 
-function menuClick(event) {
+for (let link of Array.from(links)) {
+    link.onclick = function () {
 
-    let target = event.target;
-    if (target.getAttribute("href") === "") {
-        event.preventDefault();
+        const parent = link.parentElement;
+        if (parent.querySelector('.menu_sub').className === 'menu menu_sub') {
+            parent.querySelector('.menu_sub').className = 'menu menu_sub menu_active';
+        } else {
+            parent.querySelector('.menu_sub').className = 'menu menu_sub'
+        }
 
-        const bro = target.nextElementSibling;
-        bro.classList.toggle("menu_active");
-
-        target.textContent === "Услуги" ?
-            target.closest(".menu__item").previousElementSibling.children[1].classList.remove("menu_active") :
-            target.closest(".menu__item").nextElementSibling.children[1].classList.remove("menu_active");
+        if (link.closest('.menu_main')) {
+            return false
+        }
     }
 }
-
-delegationBody.addEventListener("click", menuClick);
