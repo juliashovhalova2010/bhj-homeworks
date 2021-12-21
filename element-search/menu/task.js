@@ -6,8 +6,8 @@ function clearActive(element) {
     }); 
 }
 function clickMenu() {
-    if (this.nextElementSibling.contains('menu_sub')) {
-        let menuActive = this.nextElementSibling.contains('menu_active');
+    if (this.nextElementSibling.classList.contains('menu_sub')) {
+        let menuActive = this.nextElementSibling.classListю.contains('menu_active');
         clearActive(this);
         if (!menuActive) {
             this.nextElementSibling.classList.add('menu_active'); //
