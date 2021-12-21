@@ -1,20 +1,19 @@
 'use strict';
+let delegationBody = document.querySelector("body");
 
-function clearActive(element) {
-    Array.from(element.closest('.menu_main').querySelectorAll('.menu_active')).forEach(element => {
-        element.classList.remove('menu_active');
-    }); 
-}
-function clickMenu() {
-    if (this.nextElementSibling.classList.contains('menu_sub')) {
-        let menuActive = this.nextElementSibling.classListю.contains('menu_active');
-        clearActive(this);
-        if (!menuActive) {
-            this.nextElementSibling.classList.add('menu_active'); //
-        }
+function menuClick(event) {
+
+    let target = event.target;
+    if (target.getAttribute("href") === "") {
+        event.preventDefault();
+
+        const bro = target.nextElementSibling;
+        bro.classList.toggle("menu_active");
+
+        target.textContent === "Услуги" ?
+            target.closest(".menu__item").previousElementSibling.children[1].classList.remove("menu_active") :
+            target.closest(".menu__item").nextElementSibling.children[1].classList.remove("menu_active");
     }
-    return false; 
 }
-Array.from(document.querySelectorAll('.menu__link')).forEach(element => {
-    element.onclick = clickMenu; 
-});
+
+delegationBody.addEventListener("click", menuClick);
